@@ -15,3 +15,11 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Student C# build output, IDE settings, and Blender backup files
+Students-works/**/bin/
+Students-works/**/obj/
+.idea/
+.vs/
+Students-works/**/*.blend1
+Students-works/**/*.blend2

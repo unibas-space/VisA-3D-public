@@ -15,7 +15,7 @@ Create a planet and a rocket in Blender, render them together, and build an inte
 > [!NOTE]
 > Complete installation and project setup before class. The two-hour schedule assumes a guided walkthrough and copy-paste code. Detailed styling and the optional VOXON demonstration can continue afterwards.
 
-This file is the complete walkthrough and the document to edit. The screenshots are examples from the practical run. Some show earlier filenames or folder layouts; use the consistent names and paths specified in the text.
+This is the complete student walkthrough. Each figure accompanies the action or result it illustrates. Screenshots document a rehearsal; captions identify relevant differences from the current recipe. The [image notes and index](doc-assets/README.md) distinguish design references, diagrams, and earlier captures.
 
 ## Contents
 
@@ -23,8 +23,9 @@ This file is the complete walkthrough and the document to edit. The screenshots 
 - [Task 1.A — Create, render, and export the models in Blender](#task-1a--create-render-and-export-the-models-in-blender)
 - [Task 1.B — Prepare the physical scenes in Godot](#task-1b--prepare-the-physical-scenes-in-godot)
 - [Task 1.C — Add control logic and simulate the orbit](#task-1c--add-control-logic-and-simulate-the-orbit)
-- [Save and push your work](#save-and-push-your-work)
+- [Save your work and optionally submit](#save-your-work-and-optionally-submit)
 - [Assets and material recipes](#assets-and-material-recipes)
+- [Bonus — Rocket exhaust](VisA-3D-Bonus-Rocket-Exhaust.md)
 - [Optional extension — VOXON](#optional-extension--voxon)
 
 ---
@@ -39,7 +40,7 @@ This file is the complete walkthrough and the document to edit. The screenshots 
 | Godot | 4.7 **.NET edition** | C# is available when attaching a script |
 | .NET SDK | 10, matching your CPU architecture | `dotnet --list-sdks` includes a 10.x SDK |
 | JetBrains Rider | A current version with Godot support | Opens the Godot C# project |
-| Git | Installed and authenticated for the student repository | Can clone and later push your work |
+| Git and a GitHub account | Needed for the optional fork-and-pull-request submission | Can clone your fork and push a branch |
 | Three-button mouse | Recommended | Middle-button navigation works |
 
 > [!NOTE]
@@ -47,56 +48,61 @@ This file is the complete walkthrough and the document to edit. The screenshots 
 
 Use the [.NET edition of Godot](https://godotengine.org/download/) for the release announced in class and install the [.NET SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) separately. A runtime-only installation cannot compile the scripts. BlenderKit's free tier is optional: the required atlas and sky are already supplied.
 
-### Get the teaching materials and your working repository
+### Get the repository and create your working folders
 
-We use two repositories:
+The [VisA-3D-public repository](https://github.com/unibas-space/VisA-3D-public) contains both the workshop materials and the **Students-works/** directory. Use the same repository layout throughout the workshop.
 
-| Repository | Purpose | What you change |
-| --- | --- | --- |
-| [VisA-3D teaching materials](https://github.com/unibas-space/VisA-3D) | This walkthrough, screenshots, textures, and reference code | Read and copy the supplied resources |
-| Student repository — URL supplied in class | Your Blender assets and Godot project | Work in your own named folders and push your progress |
-
-Clone the teaching materials:
-
-```bash
-git clone https://github.com/unibas-space/VisA-3D.git
-```
-
-Clone the separate student repository alongside it. **Replace `STUDENT_REPOSITORY_URL` with the actual URL before running this command.**
-
-```bash
-git clone STUDENT_REPOSITORY_URL visa-student-work
-```
-
-Use the branch announced in class. Inside the student repository, create **`Name-Lastname-blender`** and **`Name-Lastname-godot`**, replacing `Name-Lastname` with your own name. Use hyphens and avoid spaces in these folder names.
-
-Copy the complete **`assets/` directory** from the teaching materials into **`Name-Lastname-blender/assets/`**. This keeps the Blender files and their image dependencies together. Also create `exports/` and `renders/` inside your Blender folder.
-
-| Student-repository path | Contents |
+| Path from the repository root | Purpose |
 | --- | --- |
-| `Name-Lastname-blender/assets/` | Copy of the supplied textures, sky, and material presets; later your baked planet image |
-| `Name-Lastname-blender/planet.blend` | Planet geometry and material |
-| `Name-Lastname-blender/rocket.blend` | Editable rocket parts and a separate export mesh |
-| `Name-Lastname-blender/showcase.blend` | Composition, camera, lighting, and sky |
-| `Name-Lastname-blender/exports/` | GLB files exported from Blender |
-| `Name-Lastname-blender/renders/` | Rendered PNG |
-| `Name-Lastname-godot/` | Your complete Godot project |
+| `From Zero to 3D - From 3D to a Game/` | Walkthrough, supplied assets, reference code, and tools |
+| `Students-works/firstname-lastname/` | Your Blender files and Godot project |
+| `README.md` | Repository overview and voluntary submission rules |
+
+Replace **firstname-lastname** with your own name or a nickname, using hyphens and no spaces. Use the same folder name in every path below. Create a new folder for your work; leave other students' folders unchanged.
+
+If you want to submit your work, click **Fork** on GitHub, then clone **your fork**. Replace **YOUR-GITHUB-USERNAME** in the URL:
+
+```bash
+git clone https://github.com/YOUR-GITHUB-USERNAME/VisA-3D-public.git
+cd VisA-3D-public
+git switch -c workshop-submission
+```
+
+Run these commands in Git Bash on Windows or a terminal on macOS/Linux. Your fork is your writable copy of the same repository; you do not need a separate student repository or write access to the original.
+
+> [!NOTE]
+> Submission is voluntary. To work locally without a GitHub account, use **Code → Download ZIP** on the original repository and extract it into a writable folder. Use the same student-folder layout and skip the final push/pull-request steps.
+
+> [!WARNING]
+> A public fork and any submitted work are publicly visible. A nickname for your folder does not make your GitHub account or commit history anonymous.
+
+Inside **Students-works/firstname-lastname/**, create **blender/** and **godot/**. Copy the entire **assets/** directory from **From Zero to 3D - From 3D to a Game/** into your **blender/** folder. Create **exports/** and **renders/** there as well.
+
+| Path inside `Students-works/firstname-lastname/` | Contents |
+| --- | --- |
+| `blender/assets/` | Supplied textures, sky, and material presets; later your baked planet image |
+| `blender/planet.blend` | Planet geometry and material |
+| `blender/rocket.blend` | Editable rocket parts and a separate export mesh |
+| `blender/showcase.blend` | Composition, camera, lighting, and sky |
+| `blender/exports/` | Exported GLB files |
+| `blender/renders/` | Rendered PNG |
+| `godot/` | Complete Godot project, including its own copy of imported assets |
 
 > [!IMPORTANT]
-> In Blender steps, paths such as `assets/textures/...` are relative to **your Blender folder**. In Godot, `res://` means **your Godot project folder**. Images in this document remain in the teaching repository's `doc-assets/`; they are not game assets.
+> **Your Blender folder** means `Students-works/firstname-lastname/blender/`; **your Godot folder** means `Students-works/firstname-lastname/godot/`. In Blender steps, `assets/...` is relative to your Blender folder. In Godot, `res://` is relative to your Godot folder. Paths such as `code/RocketOrbit.cs` and `tools/create_planet_material.py` refer to supplied files inside the workshop directory.
 
 ### Create the final Godot project and check C#
 
 Create the project you will use throughout the workshop. You will return to the same project after modelling.
 
-1. Open the **.NET edition** of Godot and choose **Create**. Name the project **VisA-Name-Lastname**.
-2. Set Project Path to your existing **`Name-Lastname-godot`** folder inside the student repository. Disable automatic folder creation if it would add another nested folder.
-3. Choose **Forward+**. Set **Version Control Metadata to None**; Git is managed at the student repository root, and we add the project exclusions in the final saving step.
+1. Open the **.NET edition** of Godot and choose **Create**. Name the project **VisA-firstname-lastname**.
+2. Set Project Path to your existing **`Students-works/firstname-lastname/godot`** folder inside your local repository copy. Disable automatic folder creation if it would add another nested folder.
+3. Choose **Forward+**. Set **Version Control Metadata to None**; Git is managed at the repository root, and we add the project exclusions in the final saving step.
 4. Click **Create & Edit**.
 
-![Create the Godot project with Forward Plus](doc-assets/img.png)
+![Godot Create New Project dialog with Forward Plus selected](doc-assets/setup/godot-create-project.png)
 
-*Create the final workshop project with Forward+. Use your named student folder and set Version Control Metadata to None; the earlier screenshot still shows Git.*
+*Project creation dialog: choose Forward+. Set Project Path to your own Students-works folder and Version Control Metadata to None; the captured dialog still uses an earlier path and Git metadata.*
 
 > [!TIP]
 > If Forward+ does not start on your laptop, use Compatibility for the same project and tell the instructor. Keep Forward+ when the setup check works.
@@ -104,9 +110,9 @@ Create the project you will use throughout the workshop. You will return to the 
 5. Create a scene using **Other Node → Node** and name the root **SetupCheck**. Save it as `res://setup_check.tscn`.
 6. Select the root and choose **Attach Script**. Set Language to **C#**, keep Inherits as **Node**, and set the file path to **`res://SetupCheck.cs`**. Godot creates the C# project and solution.
 
-![Attach a C sharp script to SetupCheck](doc-assets/img_1.png)
+![Attach Node Script dialog with C sharp selected](doc-assets/setup/godot-attach-csharp-script.png)
 
-*Choose C# and Node inheritance. Before creating the script, change the default path shown here from Node.cs to SetupCheck.cs.*
+*The Attach Script dialog offers C# and Node inheritance. Replace the displayed Node.cs filename with SetupCheck.cs before creating the script.*
 
 7. Replace the generated script with the following:
 
@@ -126,9 +132,9 @@ public partial class SetupCheck : Node
 9. In **Editor → Editor Settings → Dotnet → Editor**, set **External Editor** to **JetBrains Rider** and open the script.
 10. Keep this project for the workshop. Resolve any package restore or missing-runtime error now; use the runtime named in the error if the generated project targets an older version.
 
-![Successful C sharp setup in the Godot Output panel](doc-assets/img_2.png)
+![Godot Output panel confirming the C sharp setup check](doc-assets/setup/godot-csharp-setup-output.png)
 
-*The Output panel confirms that C# builds and runs. This capture also records the rehearsal version: Godot 4.6.3 .NET.*
+*The Output panel contains “C# workshop setup works.” The captured editor is Godot 4.6.3 .NET.*
 
 > [!IMPORTANT]
 > A successful build and run is the setup check. Rider alone does not provide the .NET SDK. Godot's exported C# fields become visible after a successful build. See [Godot's C# setup documentation](https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_basics.html).
@@ -169,15 +175,7 @@ Object Mode changes complete objects. Edit Mode changes their vertices, edges, a
 
 ### A2. Create the planet
 
-Aim for a simple colored sphere such as the one below. You can vary the colors and patch sizes; keep the radius and origin consistent so the later physics setup matches.
-
-![Blue and green procedural planet in Material Preview](doc-assets/img_7.png)
-
-*A possible planet result. The exact patch distribution depends on your noise and ramp settings; you can choose a different palette.*
-
-![Schematic of coordinates, noise, a color ramp, and the planet surface](doc-assets/planet-material-overview.svg)
-
-*The material reads a position, calculates a noise value, maps that value to a color, and shades the sphere. The mesh supplies the geometry independently of this graph.*
+Create a sphere, then give it a procedural colour pattern. You can vary the palette and patch sizes; keep the radius and origin consistent so the later physics setup matches.
 
 #### Model the sphere
 
@@ -186,11 +184,11 @@ Aim for a simple colored sphere such as the one below. You can vary the colors a
 3. Set **Segments 32**, **Ring Count 16**, and **Radius 2**. Keep Location `(0, 0, 0)`.
 4. Rename the object **Planet** in the Outliner. Right-click → **Shade Smooth**.
 5. In Object Mode, use **Ctrl+A → Scale**: this is the **Apply Scale** command. Press **N** and open **Item** to check Scale `(1, 1, 1)` and Dimensions approximately `(4, 4, 4)`.
-6. Save as **`Name-Lastname-blender/planet.blend`**.
+6. Save as **`Students-works/firstname-lastname/blender/planet.blend`**.
 
-![Planet sphere and its object transforms in Blender](doc-assets/img_5.png)
+![Blender UV sphere with dimensions four and unit scale](doc-assets/blender/planet-sphere-dimensions.png)
 
-*Check the sphere dimensions and unit scale in the Item sidebar. Rename the object Planet even if the screenshot still uses Sphere.*
+*The Item panel shows dimensions of 4 on each axis and scale 1. Name your sphere Planet; the capture still uses Sphere.*
 
 > [!NOTE]
 > Applying scale keeps the visible size but records it in the mesh, leaving object scale at one. Shade Smooth changes the interpolated surface shading; it does not add polygons. The UV Sphere also comes with a UV map for the later bake.
@@ -201,9 +199,9 @@ Aim for a simple colored sphere such as the one below. You can vary the colors a
 2. In the Shader Editor header, keep the context at **Object** and click **New**. If a material already exists, use it. Rename it **PlanetSurface** in the material name field.
 3. Keep the **Principled BSDF** and **Material Output** nodes and their existing connection.
 
-![New material in the Blender Shading workspace](doc-assets/img_6.png)
+![New Blender material with Principled BSDF and Material Output](doc-assets/blender/planet-new-material.png)
 
-*A new material starts with Principled BSDF connected to Material Output. Name it PlanetSurface before adding the procedural nodes.*
+*The starting material has Principled BSDF connected to Material Output. This is the graph before adding the procedural nodes or changing roughness.*
 
 4. With the pointer over the Shader Editor, press **Shift+A**, choose **Search**, and type **Texture Coordinate**. Click to place the node. Repeat for **Noise Texture** and **Color Ramp**. F3 also opens command search.
 5. Drag from each output socket to the corresponding input:
@@ -215,17 +213,17 @@ Aim for a simple colored sphere such as the one below. You can vary the colors a
 | Color Ramp: **Color** | Principled BSDF: **Base Color** | Use that color on the surface |
 | Principled BSDF: **BSDF** | Material Output: **Surface** | Send the material to the renderer |
 
+![Schematic of the Factor-based procedural planet material](doc-assets/diagrams/planet-factor-material-flow.svg)
+
+*Wiring reference for this recipe: Generated coordinates → Noise Factor → Color Ramp → Principled Base Color → Material Output. This is a diagram, not a screenshot.*
+
 6. Set Noise to **3D**, Scale **3.0**, Detail **2.0**, Roughness **0.6**, Distortion **0**. Keep the other defaults.
 7. In the Color Ramp, keep **Linear** interpolation. Select the left stop, set Position **0.47**, click its color field, and enter **`#1F5E9C`**. Select the right stop and set Position **0.53**, color **`#66B36D`**. If Blender expects eight hex digits, append `FF` for full opacity.
 8. On Principled BSDF, set **Metallic 0**, **Roughness 0.85**, and **Alpha 1**.
 9. Choose **Material Preview** using the viewport shading buttons at the top-right. Save.
 
-![Planet material node graph in Blender](doc-assets/img_8.png)
-
-*The material graph from the practical run. Follow the socket correction below when reproducing the reference recipe.*
-
 > [!IMPORTANT]
-> For the recipe above, connect Noise Texture's **gray Factor output** to the ramp. The screenshot uses its yellow Color output, which Blender converts to a value; that is a different variation. Use the table and overview diagram as the wiring reference.
+> Use Noise Texture’s **gray Factor output** for this recipe. The blue-and-green preview in the optional variation below uses the Color output; its close-up is retained in the [image notes](doc-assets/README.md#procedural-material-variation). Follow the diagram above when wiring your graph.
 
 Think of the graph as a sequence of functions: coordinates become a numerical pattern, the ramp maps numbers to colors, and the shader determines the visible surface. Roughness controls how broad or sharp reflections appear.
 
@@ -240,12 +238,20 @@ Choose different ramp colors or Noise Scale. These four starting points use the 
 | Ice | 2.8 | `#466A92` | `#D9F2EE` |
 | Candy | 3.8 | `#68418F` | `#EE9CAF` |
 
-![Colored pencil solar system design references](doc-assets/img_3.png)
+![Illustrated solar system used as colour and style inspiration](doc-assets/reference/colored-pencil-planet-inspiration.png)
 
-*Planet design references: explore colors and surface patterns while keeping the workshop geometry simple.*
+*Design inspiration for colours and surface patterns. These detailed illustrated planets are not the output of the two-colour noise recipe.*
 
 > [!TIP]
 > The reference illustration is inspiration, not a requirement to reproduce rings, craters, or detailed continents. Your two-color procedural planet is sufficient. Keep radius **2** and the origin at `(0, 0, 0)`.
+
+#### Recorded material variation (optional)
+
+The rehearsal used Noise Texture’s yellow Color output instead of its gray Factor output. The image below belongs to that variation; it illustrates the surface style, while the diagram above defines the main recipe.
+
+![Blue and green procedural planet in Blender Material Preview](doc-assets/blender/planet-procedural-material-preview.png)
+
+*A completed blue-and-green material from the rehearsal. This capture uses the Color-output variation described in the image notes; your Factor-based recipe can produce a different patch pattern. See the [material-variation note](doc-assets/README.md#procedural-material-variation).*
 
 **Checkpoint:** A colored planet is saved in `planet.blend`.
 
@@ -253,9 +259,9 @@ Choose different ramp colors or Noise Scale. These four starting points use the 
 
 Use the illustration as a design direction. Our version uses a cylinder, cone, nozzle, and **three fins distributed around the body**.
 
-![Colored pencil rocket design reference](doc-assets/img_4.png)
+![Illustrated rocket used as a design reference](doc-assets/reference/colored-pencil-rocket-inspiration.png)
 
-*Design reference for the rocket. The workshop model simplifies this illustration into primitive meshes and three repeated fins.*
+*Design inspiration: a pointed nose, cylindrical body, nozzle, and fins. The workshop model uses simpler geometry and your own colour choices.*
 
 #### Create the main parts and one fin
 
@@ -270,15 +276,15 @@ Use the illustration as a design direction. Our version uses a cylinder, cone, n
 | `Nozzle` | Cylinder | 12 vertices; radius **0.18**; depth **0.20** | `(0, 0, -0.70)` |
 | `Fin` | Cube | Dimensions **`(0.40, 0.10, 0.55)`** | `(0.38, 0, -0.38)` |
 
-![Rocket primitives before fin shaping](doc-assets/img_9.png)
+![Rocket cylinder cone nozzle and one rectangular fin](doc-assets/blender/rocket-primitives-and-unshaped-fin.png)
 
-*Block out the body, nose, nozzle, and one fin before shaping or repeating the fin.*
+*Initial blockout: body, nose, nozzle, and a rectangular fin. The fin has not yet been shaped or repeated.*
 
 4. Select all mesh parts and use **Ctrl+A → Scale**. Each should now have Scale `(1, 1, 1)`.
 
-![Blender Apply menu with Scale selected](doc-assets/img_10.png)
+![Blender Apply menu with Scale highlighted](doc-assets/blender/apply-object-scale-menu.png)
 
-*Apply Scale in Object Mode before bevels and the radial array, keeping the visible dimensions unchanged.*
+*Use Apply Scale in Object Mode before the bevel and array steps. This menu capture shows the command, not the resulting transforms.*
 
 > [!TIP]
 > **Precise placement:** use the numeric locations above first. For free modelling, the magnet in the viewport header enables snapping; its dropdown selects targets such as Vertex, Edge, or Face. With snapping off, hold **Ctrl while moving with G** to enable it temporarily. Object Mode snaps a reference point of the object, so use **Edit Mode vertex snapping** when you need a specific vertex to meet another vertex. Turn snapping off again for the numerical recipe.
@@ -304,9 +310,9 @@ The array will rotate copies around the rocket's center, not around the fin's ow
 4. Set Count to **3**. Disable **Relative Offset** and **Constant Offset**. Enable **Object Offset** and select **FinRotation** as the offset object.
 5. Inspect from above: the fins should be separated by **120°**. Keep the modifier unapplied in the source model.
 
-![Top view of three fins rotated around the rocket center](doc-assets/three-fin-array.svg)
+![Top-view diagram of three fins rotated about one shared origin](doc-assets/diagrams/rocket-three-fin-array.svg)
 
-*The original fin and two rotated copies share the rocket center. The fin origin and offset Empty must be at that center, with unit scale.*
+*Array diagram: the original fin and two copies are spaced by 120°. The fin origin and FinRotation Empty share the rocket centre.*
 
 > [!TIP]
 > If the copies form a spiral or change size, check the fin and Empty origins, scale, and offset settings. Only the Empty's Z rotation should provide the repeated transform.
@@ -315,11 +321,11 @@ The array will rotate copies around the rocket's center, not around the fin's ow
 
 1. Select Body and add a **Bevel modifier**. Use Amount **0.02**, Segments **2**, and Limit Method **Angle** with approximately **30°**. This softens the end rims while retaining the simple cylinder.
 2. Optionally add a porthole: a UV Sphere with radius **0.16**, located at `(0, -0.29, 0.20)`, and scaled to `(1, 0.25, 1)`. Apply its scale and name it **Window**.
-3. Keep the other details simple and save as **`Name-Lastname-blender/rocket.blend`**.
+3. Keep the other details simple and save as **`Students-works/firstname-lastname/blender/rocket.blend`**.
 
-![Untextured rocket with fins](doc-assets/img_11.png)
+![Untextured rocket with shaped fins](doc-assets/blender/rocket-untextured-fins.png)
 
-*Recognizable rocket geometry before texturing. The three-fin array gives an even arrangement around the body.*
+*The rocket silhouette after shaping and repeating the fins, before texturing. The image shows the result; the array settings are explained separately.*
 
 **Checkpoint:** The source collection contains separate, editable parts and the fin array. The reference screenshot shows the general silhouette; your bevels and fin shape can differ.
 
@@ -332,13 +338,17 @@ The array will rotate copies around the rocket's center, not around the fin's ow
 3. Keep Color Space at **sRGB**. Connect **Image Texture Color → Principled Base Color**. Set Metallic **0**, Roughness **0.85**, Alpha **1**.
 4. For Nose, Nozzle, Fin, and the optional Window, choose **RocketPencil** from the existing-material dropdown beside **New**. Reuse the material rather than creating a copy for each part.
 
-![Rocket atlas connected to Principled Base Color](doc-assets/img_13.png)
+![Rocket atlas image connected to Principled Base Color](doc-assets/blender/rocket-atlas-material-nodes.png)
 
-*The same image-based RocketPencil material can be shared by all rocket parts; their UVs choose different color patches.*
+*The atlas supplies Base Color and the material roughness is 0.85. The mixed colours on the small rocket preview show why the UV placement step is still needed.*
 
 #### Move each part's UVs into a color
 
 UVs are positions in the image. We use the atlas as a collection of colored pencil surfaces; choose any color for each part.
+
+![Supplied rocket pencil texture atlas](assets/textures/rocket-pencil-atlas.png)
+
+*Use UV placement to choose a patch. There are no prescribed color assignments or exact UV-center coordinates.*
 
 1. Select a part in Object Mode and switch to **UV Editing**.
 2. With the pointer over the **3D viewport**, press Tab, then A. Use **U → Smart UV Project** and confirm.
@@ -351,9 +361,9 @@ UVs are positions in the image. We use the atlas as a collection of colored penc
 > [!TIP]
 > No exact UV coordinates are needed. If every color appears on one part, its UVs still cover the whole atlas. If another part's UVs move too, return to Object Mode and select only the intended part before entering Edit Mode.
 
-![Rocket with red body blue nose and green fins](doc-assets/img_14.png)
+![Rocket with red body blue nose green fins and yellow window](doc-assets/blender/rocket-textured-uv-result.png)
 
-*One possible color arrangement after UV placement. Choose your own colors; the optional window samples another atlas patch.*
+*Example after placing each part’s UV islands within a chosen atlas patch. The visible window is optional; your colours can differ.*
 
 #### Keep the source editable and create a separate export object
 
@@ -365,12 +375,12 @@ Keep both representations in **the same `rocket.blend`**: `RocketSource` contain
 4. In Object Mode, use **Object → Convert → Mesh**, or F3 and search **Convert Mesh**. This evaluates modifiers on the duplicates, including the fin array and bevel, and turns the result into ordinary mesh geometry.
 5. Select all duplicate meshes, with the duplicate Body selected last as the active object. Press **Ctrl+J — Join**. Rename the result **Rocket**.
 6. Use **Shift+S → Cursor to World Origin**, then **Object → Set Origin → Origin to 3D Cursor**. Confirm Rocket Location zero, Rotation zero, and Scale one.
+![Joined Rocket object with zero location rotation and unit scale](doc-assets/blender/rocket-joined-export-transforms.png)
+
+*The joined export mesh is named Rocket, with zero location/rotation and unit scale. This earlier capture shows only the export object; keep the editable RocketSource collection in your own file.*
+
 7. In the Outliner, hide **RocketSource** in both the viewport and render. Use the eye/monitor and camera restriction toggles; expose them through the Outliner's filter menu if needed. Keep RocketExport visible.
 8. Use **File → External Data → Make All Paths Relative**, then save `rocket.blend`.
-
-![Joined textured rocket in Blender](doc-assets/img_15.png)
-
-*The joined Rocket is the export snapshot. In the revised workflow, also retain the hidden RocketSource collection with editable parts.*
 
 > [!IMPORTANT]
 > Convert and join **the duplicates**. Keep the original parts, the Array modifier, and FinRotation in RocketSource. When you change the source later, replace the old export snapshot by repeating these steps; it does not update automatically. Hide only after converting, while the Array's Empty is still available.
@@ -385,7 +395,7 @@ Keep both representations in **the same `rocket.blend`**: `RocketSource` contain
 2. Choose **File → Append**, open your `planet.blend`, enter **Object**, and select **Planet**.
 3. Append **Rocket** from `rocket.blend`. Select the joined export object, not the source collection or individual parts.
 4. Arrange them freely. Starting positions are Planet `(-1.8, 0, 0)` and Rocket `(2.2, 0, 0)`. You can rotate or scale the copies for the composition.
-5. Save as **`Name-Lastname-blender/showcase.blend`**.
+5. Save as **`Students-works/firstname-lastname/blender/showcase.blend`**.
 
 > [!NOTE]
 > Append copies data into this scene. The source files retain their original scale, orientation, and origins for the game. Later source edits do not automatically update an appended copy.
@@ -394,16 +404,20 @@ Keep both representations in **the same `rocket.blend`**: `RocketSource` contain
 
 1. Open **Shading** and switch the Shader Editor context from **Object** to **World**. Enable **Use Nodes** if necessary.
 
-![Blender World context in the Shader Editor](doc-assets/img_16.png)
+![Blender Shader Editor switched to World context](doc-assets/blender/showcase-world-shader-context.png)
 
-*Switch the Shader Editor from Object to World to edit the scene background instead of an object material.*
+*World context exposes Background and World Output. The environment image has not yet been connected.*
 
 2. Add an **Environment Texture** and open **`assets/sky/space-panorama.png`**. Use Equirectangular projection and sRGB.
 3. Connect **Environment Texture Color → Background Color**, then **Background → World Output Surface**. Set Background Strength to **0.5**.
 
-![Environment texture connected to Background and World Output](doc-assets/img_17.png)
+![Environment Texture connected to Background and World Output](doc-assets/blender/showcase-environment-node-connections.png)
 
-*World node connections. This capture uses another environment image; load the supplied space-panorama.png for the self-contained workshop.*
+*Connection reference: Environment Texture → Background → World Output, with strength 0.5. The captured node uses another sky image; load the supplied space-panorama.png.*
+
+![Supplied star background panorama](assets/sky/space-panorama.png)
+
+*The supplied panorama is a background rather than an HDR lighting source. Use the scene lights for the models.*
 
 #### Add the camera and light
 
@@ -425,9 +439,9 @@ Keep both representations in **the same `rocket.blend`**: `RocketSource` contain
 3. Press **F12**. In Render Result, choose **Image → Save As** and save **`renders/showcase.png`**.
 4. Make external paths relative and save `showcase.blend`.
 
-![Rendered planet and rocket against a star background](doc-assets/img_18.png)
+![Rendered planet and rocket against a star background](doc-assets/blender/showcase-planet-rocket-render.png)
 
-*A completed example composition. Placement, camera framing, and the star pattern may differ from your scene and supplied panorama.*
+*Example of the completed composition. This rehearsal render uses a different star image and arrangement; your render should show both assets against your chosen sky.*
 
 > [!TIP]
 > **Optional Cycles render:** in **Edit → Preferences → System → Cycles Render Devices**, select a supported GPU backend, such as **OptiX** for an NVIDIA RTX card, and enable the GPU. Then choose **Cycles → Device: GPU Compute** in Render Properties. Start with **64 samples and denoising**. EEVEE already renders on the GPU and does not use this Cycles device selector. CPU is sufficient for the small color bake below.
@@ -452,32 +466,32 @@ Open your original **`planet.blend`**, leaving its procedural graph connected fo
 1. Select Planet, switch the render engine to **Cycles**, and use CPU or your configured GPU.
 2. Confirm a UV map exists under **Object Data Properties → UV Maps**.
 
-![UV Map listed in Blender object data](doc-assets/img_19.png)
+![UVMap entry in Blender mesh data properties](doc-assets/blender/planet-existing-uv-map.png)
 
-*The UV Sphere already has a UV map. Baking uses this mapping to place surface colors into the destination image.*
+*The UV Sphere already has a UVMap entry. This confirms that a UV map exists; it does not show the unwrap or the bake result.*
 
 3. In the Shader Editor, add an **Image Texture** node. Click **New**, name the image **PlanetBaseColor**, and choose **1024 × 1024**, normal 8-bit color, sRGB.
 4. Leave this destination node **unconnected**. Keep Noise → Color Ramp → Principled Base Color connected while baking.
 5. Click the new image node to make it **active**, select only Planet, and remain in Object Mode.
 6. In **Render Properties → Bake**, choose **Diffuse**. Under Influence / Contributions, enable **Color** and disable **Direct** and **Indirect**. Leave **Selected to Active** off and use a **16 px margin**.
 
-![Cycles diffuse bake with color only enabled](doc-assets/img_20.png)
+![Cycles bake settings with Diffuse and Color contribution selected](doc-assets/blender/planet-diffuse-color-only-bake.png)
 
-*Bake Diffuse with Color enabled and Direct/Indirect disabled. The screenshot uses CPU; the same bake can use a configured supported GPU.*
+*Cycles bake settings: Diffuse with Color enabled and Direct/Indirect disabled. The capture uses CPU and a 16 px margin.*
 
 7. Click **Bake**. The result should contain the colored pattern without baked scene lighting or shadows.
 8. In the Image Editor, select PlanetBaseColor and choose **Image → Save As**. Save **`assets/textures/planet-basecolor.png`** in your Blender folder.
 
-![Saving the baked planet image from the Image Editor](doc-assets/img_21.png)
+![Blender Image menu over a baked planet texture](doc-assets/blender/planet-save-baked-image-menu.png)
 
-*Save the generated image as assets/textures/planet-basecolor.png before exporting the material.*
+*The baked colour image is visible in the Image Editor. Use Image → Save As to write your planet-basecolor.png file.*
 
 9. Now connect **PlanetBaseColor Color → Principled Base Color**, replacing the ramp's final connection. Keep the procedural nodes in the graph for later edits. Roughness remains **0.85**, Metallic **0**.
 10. Save `planet.blend`.
 
-![Baked planet image driving the final material](doc-assets/img_22.png)
+![Baked PlanetBaseColor image connected to Principled Base Color](doc-assets/blender/planet-baked-image-base-color.png)
 
-*After baking, the image feeds Base Color. The disconnected procedural branch is retained for future edits and rebaking.*
+*After baking, PlanetBaseColor supplies Base Color. The original procedural branch remains in the graph but is disconnected from the shader.*
 
 > [!IMPORTANT]
 > Saving the `.blend` does not replace saving the generated image externally. To rebake a changed palette, reconnect the procedural ramp to Base Color first, leave the destination image unconnected but active, bake, save the PNG, then reconnect the image.
@@ -503,22 +517,22 @@ For Planet in `planet.blend` and Rocket in `rocket.blend`:
 1. Select only the final asset mesh in Object Mode. Check origin zero, rotation zero, unit scale, UVs, and the image-based material.
 2. Choose **File → Export → glTF 2.0**.
 
-![Blender export menu showing glTF 2.0](doc-assets/img_23.png)
+![Blender File Export menu with glTF 2.0 highlighted](doc-assets/blender/export-gltf-menu.png)
 
-*Choose the glTF 2.0 exporter, then select GLB and export only the intended mesh.*
+*Open the glTF 2.0 exporter here. Choose GLB and Selected Objects in the export dialog that opens next; those settings are not shown in this capture.*
 
 3. Choose **glTF Binary (`.glb`)** and enable **Selected Objects**. Export materials, UVs, and normals. Keep the default **+Y Up** conversion. Use the normal embedded-image GLB export, not a separate-texture option.
 4. Save **`exports/planet.glb`** and **`exports/rocket.glb`**.
-5. Copy the final files into **`Name-Lastname-godot/assets/models/`**, creating the folder if necessary. Copy the sky into **`Name-Lastname-godot/assets/sky/space-panorama.png`**.
+5. Copy the final files into **`Students-works/firstname-lastname/godot/assets/models/`**, creating the folder if necessary. Copy the sky into **`Students-works/firstname-lastname/godot/assets/sky/space-panorama.png`**.
 6. Return to Godot and open each GLB's import preview. Check both geometry and texture. Compare the final planet with `planet-unbaked.glb` from A6.
 
-![Textured planet in the Godot import preview](doc-assets/img_24.png)
+![Godot advanced import preview showing the baked planet texture](doc-assets/godot/import-preview-baked-planet.png)
 
-*Final planet import: the baked pattern is present. Compare this with the earlier unbaked export, which cannot reproduce the Blender procedural graph.*
+*Successful final planet import: the coloured surface pattern is visible. This is the baked asset, not the earlier unbaked comparison.*
 
-![Textured rocket in the Godot import preview](doc-assets/img_25.png)
+![Godot advanced import preview showing the textured rocket standing upright](doc-assets/godot/import-preview-textured-rocket.png)
 
-*Check the rocket color and geometry in the import preview. The model stands along +Y here; its gameplay orientation is adjusted in the wrapper scene.*
+*Successful rocket import: geometry and atlas colours are present. The imported rocket points along +Y; the wrapper scene will rotate its Visual child.*
 
 > [!NOTE]
 > Blender uses Z-up; glTF and Godot use Y-up. The exported rocket therefore arrives pointing along +Y. We will rotate its **visual child** in Godot to face -Z. Do not add another manual rotation during export.
@@ -544,7 +558,7 @@ For Planet in `planet.blend` and Rocket in `rocket.blend`:
 
 ## Task 1.B — Prepare the physical scenes in Godot
 
-**Time target: approximately 25 minutes.** Continue in the **VisA-Name-Lastname** project created during setup. The final GLBs and sky were copied into it at the end of Task 1.A.
+**Time target: approximately 25 minutes.** Continue in the **VisA-firstname-lastname** project created during setup. The final GLBs and sky were copied into it at the end of Task 1.A.
 
 ### B1. Set up the game area
 
@@ -560,15 +574,11 @@ For Planet in `planet.blend` and Rocket in `rocket.blend`:
 | `res://assets/sky/space-panorama.png` | Background panorama |
 | `res://assets/tests/planet-unbaked.glb` | Optional comparison from A6 |
 
-![Imported workshop resources in the Godot FileSystem panel](doc-assets/img_26.png)
-
-*Godot imports files copied inside its project. This earlier capture uses other folders and filenames; follow assets/models and assets/sky in the table.*
-
 3. In **Project → Project Settings → Display → Window**, set **Viewport Width 1280** and **Viewport Height 720**. Under Stretch, use **Mode: canvas_items** so the HUD scales with the viewport. The settings search can locate each property.
 
-![Godot project viewport width and height settings](doc-assets/img_27.png)
+![Godot window settings with viewport width 1280 and height 720](doc-assets/godot/window-viewport-size.png)
 
-*Set the viewport to 1280 by 720. Use the settings search to locate the width, height, and stretch mode.*
+*Set Viewport Width to 1280 and Viewport Height to 720. Stretch Mode is configured separately; it is not visible in this crop.*
 
 4. Keep **Physics → Common → Physics Ticks per Second = 60**.
 5. Add these direct children to Main:
@@ -593,31 +603,31 @@ The orbit lies in the **XZ plane**, at Y = 0. The camera looks down on that plan
 > [!NOTE]
 > Anchors define the reference point; position/offsets place the rectangle relative to it. The status is a 2D overlay and remains at the upper-left while the 3D camera changes. See [Godot's explanation of anchors and offsets](https://docs.godotengine.org/en/stable/tutorials/ui/size_and_anchors.html).
 
-![Main scene tree with camera light environment and HUD](doc-assets/img_31.png)
-
-*Main contains the 3D camera and environment plus a CanvasLayer HUD with the Status label. Use HUD as the node name even if the capture shows Hud.*
-
 #### Add the sky and ambient light
 
 1. Select WorldEnvironment and create a new **Environment** resource.
 2. Set **Background → Mode = Sky**. Under Sky, create a **Sky** resource, then a **PanoramaSkyMaterial** as its Sky Material.
 3. Assign **`res://assets/sky/space-panorama.png`** to **Panorama**.
 
-![Godot WorldEnvironment with PanoramaSkyMaterial](doc-assets/img_28.png)
+![Godot Environment Sky and PanoramaSkyMaterial resources](doc-assets/godot/environment-panorama-sky.png)
 
-*Environment contains a Sky resource, whose material reads the panorama image.*
+*Background Mode is Sky. The Sky resource contains a PanoramaSkyMaterial with the panorama assigned.*
 
 4. Set **Ambient Light → Source = Color**, Color **`#B8CCE6`** (pale blue-gray), and Energy **0.5**. Use full opacity; append `FF` if the color field requires RGBA.
 
-![Godot ambient light color and energy](doc-assets/img_29.png)
+![Godot Ambient Light using Color and energy 0.5](doc-assets/godot/environment-ambient-light.png)
 
-*Use Color as the ambient source, the specified pale blue-gray, and energy 0.5.*
+*Ambient Light uses Color as its source and energy 0.5. Enter the specified pale blue-gray in the colour field.*
+
+![Main scene tree with camera light environment and HUD label](doc-assets/godot/main-camera-environment-hud-tree.png)
+
+*Scene-tree checkpoint after adding the camera, light, environment, and CanvasLayer/Status. Name the CanvasLayer HUD in your scene; the capture uses Hud.*
 
 5. Save and run the current Main scene with **F6**. At this stage, expect the star background and label, without the planet or rocket.
 
-![Sky and status label in the running Main scene](doc-assets/img_30.png)
+![Running scene with star background and Orbit workshop label](doc-assets/godot/main-sky-and-status-preview.png)
 
-*Expected result before instancing the models: a sky background and a readable status label in the upper-left.*
+*First Main-scene run: the sky and upper-left status label are visible. No planet or rocket has been instanced yet.*
 
 Godot's [PanoramaSkyMaterial](https://docs.godotengine.org/en/stable/classes/class_panoramaskymaterial.html) displays the 2:1 environment image. The background is separate from the ambient and directional lighting that make the models visible.
 
@@ -627,19 +637,19 @@ Godot's [PanoramaSkyMaterial](https://docs.godotengine.org/en/stable/classes/cla
 2. Drag `planet.glb` from the FileSystem panel onto Planet. Rename this imported instance **PlanetVisual**. Keep its position/rotation zero and scale one.
 3. Add **CollisionShape3D** directly under Planet. In its Shape field, create **SphereShape3D** and set Radius **2.0**. Keep the node transform at identity.
 
-![Planet sphere collider with radius two](doc-assets/img_32.png)
+![SphereShape3D resource with radius 2.0](doc-assets/godot/planet-sphere-collider-radius.png)
 
-*Set the SphereShape3D resource radius to 2.0 instead of scaling the collision node.*
+*Set Radius on the SphereShape3D resource to 2.0. Keep the collision node’s scale at one.*
 
-![Planet wrapper scene hierarchy](doc-assets/img_34.png)
+![Planet root with PlanetVisual and CollisionShape3D children](doc-assets/godot/planet-wrapper-scene-tree.png)
 
-*PlanetVisual and CollisionShape3D are siblings under the physical Planet root.*
+*The imported visual and collision shape are separate children of the Planet physical root.*
 
 4. Select Planet. Under Collision, enable **Layer 1 only** and **Mask 2 only**. Disable any other checked boxes.
 
-![Planet collision layer one and mask two](doc-assets/img_33.png)
+![Planet collision layer one and mask two selected](doc-assets/godot/planet-collision-layer-mask.png)
 
-*Only layer 1 and mask 2 are enabled for the planet.*
+*Planet belongs to layer 1 and checks mask 2.*
 
 5. Save as **`res://scenes/planet/Planet.tscn`**.
 
@@ -658,23 +668,24 @@ Godot's [PanoramaSkyMaterial](https://docs.godotengine.org/en/stable/classes/cla
 2. Add a **Node3D** child named **Visual**. Drag `rocket.glb` below Visual, keeping the imported instance's own transform unchanged.
 3. Set **Visual Scale `(0.5, 0.5, 0.5)`** and **Rotation `(-90°, 0°, 0°)`**. The rocket's nose should now point along its parent's **-Z**, the forward direction used by our code.
 4. Add **CollisionShape3D directly under Rocket**, beside Visual. Give it a **SphereShape3D**, Radius **0.65**, centered at zero. Keep the body and collider scales at one.
+
+![Rocket scene hierarchy and rotated visual in the editor](doc-assets/godot/rocket-wrapper-orientation-preview.png)
+
+*The imported mesh is under Visual; CollisionShape3D is a separate child of Rocket. The coloured arcs are the transform gizmo, not a running-game collision overlay.*
+
 5. Select Rocket and set **Collision Layer 2 only**, **Collision Mask 1 only**.
 
-![Rocket collision layer two and mask one](doc-assets/img_35.png)
+![Rocket collision layer two and mask one selected](doc-assets/godot/rocket-collision-layer-mask.png)
 
-*Only layer 2 and mask 1 are enabled for the rocket, matching the planet setup.*
+*Rocket belongs to layer 2 and checks mask 1, matching the planet configuration.*
 
 6. Set Rocket's **Motion Mode to Floating**. We will move it with `MoveAndCollide`, without floor movement logic.
 
-![Rocket CharacterBody3D floating motion mode](doc-assets/img_36.png)
+![CharacterBody3D motion mode set to Floating](doc-assets/godot/rocket-floating-motion-mode.png)
 
-*Use Floating for the rocket. The script will provide movement and gravity.*
+*Set the Rocket CharacterBody3D to Floating. The workshop script supplies movement and central gravity.*
 
 7. Save as **`res://scenes/rocket/Rocket.tscn`**. Check that the collider encloses the model.
-
-![Rocket visual surrounded by its collision sphere](doc-assets/img_37.png)
-
-*Inspect the artwork inside the bounding sphere. Scale and orientation changes belong on Visual; the collider stays beside it on the unscaled body.*
 
 | Node path | Responsibility |
 | --- | --- |
@@ -693,16 +704,16 @@ We use **CharacterBody3D** because the script computes motion. It provides colli
 1. Reopen Main.tscn. Drag **Planet.tscn** into Main and set Position `(0, 0, 0)`, Rotation zero, Scale one.
 2. Drag **Rocket.tscn** into Main and set Position `(6, 0, 0)`, Rotation zero, Scale one.
 
-![Planet and rocket instances in the Godot editor](doc-assets/img_38.png)
+![Planet and rocket together in the Godot 3D editor](doc-assets/godot/main-planet-rocket-editor.png)
 
-*Both reusable scenes are instanced in Main: planet at the origin, rocket initially at X = 6.*
+*Editor overview after instancing both models. Enter their numerical positions in the Inspector as specified above.*
 
 3. Save and press **F5**. Choose **Main.tscn** as the main scene when prompted. If SetupCheck was previously assigned, set **Project Settings → Application → Run → Main Scene** to Main.tscn.
 4. Confirm both assets are visible. The rocket is stationary until the script is added.
 
-![Planet and rocket visible in the game view](doc-assets/img_39.png)
+![Running Main scene with planet rocket sky and the initial label](doc-assets/godot/main-stationary-game-preview.png)
 
-*The stationary game scene before adding the orbit logic. The normal view shows visual meshes without collision overlays.*
+*Game-view checkpoint before adding orbit logic: both assets are visible, and the label still reads Orbit workshop.*
 
 > [!TIP]
 > Use **Debug → Visible Collision Shapes** while running to inspect the physical approximations. The normal game screenshot above shows the visual meshes; it is not a collision-overlay screenshot. If models seem too small, verify their scale and the camera's Orthogonal Size before changing any physical dimensions.
@@ -726,9 +737,9 @@ Open **Project → Project Settings → Input Map**. Add each action with exactl
 | `pause` | P | — | Pause/resume |
 | `reset` | R | Restore defaults | Restore defaults |
 
-![Godot input actions for placement launch and flight](doc-assets/img_40.png)
+![Godot Input Map containing the workshop control actions](doc-assets/godot/orbit-input-map.png)
 
-*Enter the action names exactly as listed. The code refers to these names rather than directly to keyboard keys.*
+*The input actions map keyboard events to the names used by the script. Match their spelling exactly.*
 
 The reference initial position is `(6, 0, 0)`, and velocity is `(0, 0, -4)`. The script restricts placement to radii 3–9 to keep the rocket outside the planet; the demonstration area ends at radius 10.
 
@@ -750,40 +761,29 @@ The reference initial position is `(6, 0, 0)`, and velocity is `(0, 0, -4)`. The
 
 ## Task 1.C — Add control logic and simulate the orbit
 
-
 **Time target: 30 minutes.** Prerequisites: the Main, Planet, and Rocket scenes from Task 1.B, working input actions, and a tested C# setup.
 
 ### C1. Add the complete script
 
-**Project:** `Name-Lastname-godot/` · **File:** `Name-Lastname-godot/scenes/rocket/RocketOrbit.cs` · **Namespace:** `VisA.OrbitWorkshop` · **Class:** `RocketOrbit`.
+**Project:** `Students-works/firstname-lastname/godot/` · **File:** `Students-works/firstname-lastname/godot/scenes/rocket/RocketOrbit.cs` · **Namespace:** `VisA.OrbitWorkshop` · **Class:** `RocketOrbit`.
 
 1. Open Rocket.tscn and attach a **C#** script named `RocketOrbit.cs` to its CharacterBody3D root. Continue using the C# project created during setup.
 2. Replace the generated file with the complete code below, or copy `code/RocketOrbit.cs` into that location. Keep only one compiled copy of this class inside the Godot project.
 3. Build the project in Godot. Confirm there are no errors.
 
-![RocketOrbit C sharp source open in the editor](doc-assets/img_41.png)
+![RocketOrbit C sharp class displayed in the script editor](doc-assets/simulation/rocket-orbit-csharp-editor.png)
 
-*Attach RocketOrbit.cs to the CharacterBody3D root and build the project after copying the complete script.*
-
+*RocketOrbit source with its exported references and experiment settings. Use the complete copy-paste listing below; this screenshot is a source-code overview, not a build-success check.*
 
 4. Open **Main.tscn**, select the **Rocket instance**, and assign its exported **Planet** field by dragging Main's Planet node into it. Assign **Status** by dragging `Main/HUD/Status` into that field. These references belong on the instance in Main because the standalone Rocket scene cannot reference Main's nodes.
 
-![RocketOrbit exported Planet and Status references](doc-assets/img_42.png)
+![RocketOrbit Inspector with Planet and Status assigned](doc-assets/simulation/rocket-planet-status-references.png)
 
-*Assign Planet and Status on the Rocket instance in Main. These fields become available after a successful C# build.*
+*The Rocket instance in Main has its Planet and Status references assigned.*
 
 5. Keep Initial Offset `(6, 0, 0)`, Initial Speed **4**, Initial Heading Degrees **0**, Mu **96**, and Substeps **4**.
 
-6. For the first experiment, turn **Use Gravity off** and **Allow Thrust off**. Save Main.tscn and run the main project with **F5**.
-
-![Orbit settings with gravity and thrust disabled](doc-assets/img_43.png)
-
-*Disable both options for the first straight-line experiment; keep Mu 96 and Substeps 4.*
-
-![Placement state with the initial velocity displayed](doc-assets/img_44.png)
-
-*Before launch, the HUD shows the reference radius 6, speed 4, and velocity (0, 0, -4). Space starts this configured experiment.*
-
+6. Save Main.tscn after assigning the references. Continue with the straight-line experiment in C2 once the script below builds successfully.
 
 ```csharp
 using Godot;
@@ -980,10 +980,21 @@ Main and the physical roots start at unit scale and zero rotation as described i
 
 ### C2. Observe motion without gravity
 
-1. Use the arrow keys to move the rocket, A/D to aim, and Z/X to change initial speed. Its nose defines the launch direction; the HUD shows the resulting velocity vector.
-2. Press R to restore the reference case, then Space to launch.
-3. With gravity and thrust disabled, the rocket moves in a straight line at constant velocity.
-4. Press P to pause/resume. Press R to reset. The simulation also stops at the edge of the finite demonstration area, radius 10.
+Stop the game, select Rocket in Main, turn **Use Gravity off** and **Allow Thrust off**, and save. Run Main with **F5**.
+
+![Experiment settings with gravity and thrust disabled](doc-assets/simulation/straight-line-gravity-thrust-disabled.png)
+
+*Straight-line experiment settings: Use Gravity off, Allow Thrust off, Mu 96, and Substeps 4.*
+
+1. Use the arrow keys to place the rocket, A/D to aim, and Z/X to change the initial speed. Its nose defines the launch direction; the HUD shows the velocity that will be used.
+2. Press R to restore the reference case. Before launching, check the placement HUD:
+
+![Placement HUD showing radius six speed four and the initial velocity](doc-assets/simulation/placement-initial-velocity-hud.png)
+
+*Before launch: PLACE state, radius 6, speed 4, and velocity (0, 0, -4), with gravity and thrust disabled. This is the placement screen, not a flight result.*
+
+3. Press Space to launch. With gravity and thrust disabled, the rocket moves in a straight line at constant velocity.
+4. Press P to pause/resume or R to reset. The simulation also stops at the edge of the finite demonstration area, radius 10.
 
 The relevant operation in `Simulate` is:
 
@@ -997,10 +1008,9 @@ Velocity is distance per unit time; `Velocity * h` is displacement. `MoveAndColl
 
 Stop the game, select Rocket in Main, enable **Use Gravity**, leave **Allow Thrust off**, save, and run again. Press Space without changing the defaults.
 
-![Central gravity enabled and thrust disabled](doc-assets/img_45.png)
+![Experiment settings with gravity enabled and thrust disabled](doc-assets/simulation/gravity-only-settings.png)
 
-*Enable gravity while keeping thrust disabled to isolate the orbit behavior.*
-
+*Gravity-only experiment: Use Gravity on and Allow Thrust off.*
 
 Let **r** point from the rocket to the planet. The acceleration is
 
@@ -1036,19 +1046,13 @@ At radius 6 with μ = 96, this gives **4**. The initial velocity `(0, 0, -4)` is
 
 **Expected result:** A near-circular numerical trajectory around the planet. Small radial oscillations are expected; this is an approximation, not an exact analytic orbit. Compare one and four substeps only after the reference case works.
 
-
-![Rocket in flight around the planet](doc-assets/img_48.png)
-
-*A flight snapshot near radius 6 and speed 4. Thrust is enabled in this capture, but enabling it alone applies no thrust; leave it off for the reference experiment.*
-
 ### C4. Add rocket control
 
 Stop the game, enable **Allow Thrust** on Rocket in Main, save, and run again.
 
-![Gravity and rocket thrust controls enabled](doc-assets/img_46.png)
+![Experiment settings with gravity and thrust enabled](doc-assets/simulation/gravity-and-thrust-enabled.png)
 
-*Enable Allow Thrust to permit steering and acceleration. Acceleration is applied only while W is held.*
-
+*Enable Allow Thrust for the interactive controls experiment while keeping gravity enabled.*
 
 - A/D turns the nose. Changing orientation alone does not change the existing velocity.
 - W adds acceleration along the nose direction.
@@ -1056,6 +1060,10 @@ Stop the game, enable **Allow Thrust** on Rocket in Main, save, and run again.
 - R restores the original Inspector-defined position, heading, and speed.
 
 This simple model treats steering as directly controlled orientation and thrust as constant acceleration. It has no fuel, drag, spin dynamics, or varying mass. The rocket can continue moving sideways relative to its nose, as expected when orientation and velocity differ.
+
+![Flight HUD with gravity and thrust controls enabled](doc-assets/simulation/flight-with-thrust-controls-enabled.png)
+
+*Flight with gravity and thrust controls enabled. “Thrust enabled: True” means W is permitted to apply acceleration; it does not show whether W is currently held.*
 
 ### C5. Finish on collision
 
@@ -1066,10 +1074,9 @@ This simple model treats steering as directly controlled orientation and thrust 
 
 The physical contact distance is approximately **2.65** from the planet center: planet radius 2 plus rocket radius 0.65, with a small engine collision margin. We do not implement a bounce or a separate geometric hit test.
 
+![Collision HUD showing zero speed and radius 2.65](doc-assets/simulation/collision-stopped-hud.png)
 
-![Collision state at the planet surface](doc-assets/img_47.png)
-
-*The run has stopped at a center distance of about 2.65, matching the two bounding radii. This capture does not display collision overlays.*
+*COLLISION state: speed and velocity are zero, and the centre distance is approximately 2.65. The screenshot shows the stopping condition, without collision overlays.*
 
 ### C6. Compare three or four experiments
 
@@ -1090,17 +1097,16 @@ Discuss: What changes when you rotate the rocket without thrust? Why is a tangen
 
 Skip this if time is short. The model already moves visibly without a trail.
 
-**File:** `Name-Lastname-godot/scenes/main/OrbitTrail.cs` · **Namespace:** `VisA.OrbitWorkshop` · **Class:** `OrbitTrail`.
+**File:** `Students-works/firstname-lastname/godot/scenes/main/OrbitTrail.cs` · **Namespace:** `VisA.OrbitWorkshop` · **Class:** `OrbitTrail`.
 
 1. Add a **MeshInstance3D** named **Trail** directly under Main. Leave its transform at identity and its Mesh empty.
 2. Attach `OrbitTrail.cs`, paste the code below, and build.
 3. Select Trail in Main and assign the Rocket instance to its **Rocket** field. Save.
 4. The script draws recent positions, retains the trail while paused or after a crash, and clears it on R. It does not predict future motion.
 
-![Optional OrbitTrail script and Rocket reference](doc-assets/img_49.png)
+![OrbitTrail Inspector with Rocket assigned and an empty Mesh resource](doc-assets/simulation/trail-rocket-reference.png)
 
-*Attach OrbitTrail to a MeshInstance3D under Main, name that node Trail, and assign its Rocket field. The Mesh is created at runtime.*
-
+*OrbitTrail has its Rocket reference assigned, while Mesh is still empty because the script creates it at runtime. Rename the MeshInstance3D node Trail in your scene.*
 
 ```csharp
 using Godot;
@@ -1159,10 +1165,9 @@ public partial class OrbitTrail : MeshInstance3D
 }
 ```
 
+![Running game showing a curved trajectory history behind the rocket](doc-assets/simulation/trajectory-history-game-preview.png)
 
-![Rocket trajectory displayed as a line in space](doc-assets/img_50.png)
-
-*The trail records visited positions so you can compare trajectories. It shows recent history, not a prediction of the next orbit.*
+*The line records positions already visited. This example includes a changing trajectory with thrust controls enabled; it is not an analytic orbit prediction or a fixed-speed reference result.*
 
 ### Troubleshooting Task 1.C
 
@@ -1181,77 +1186,71 @@ public partial class OrbitTrail : MeshInstance3D
 
 ---
 
-## Save and push your work
+## Save your work and optionally submit
 
-Save the Blender files, generated images, exported models, and Godot scenes before committing. Your student repository should contain both of your named folders, including every referenced asset.
+Save the Blender files, baked images, exported models, and Godot scenes. Keep every dependency inside **Students-works/firstname-lastname/**. Publishing your work is optional.
 
-1. In **`Name-Lastname-godot/.gitignore`**, include the following generated-data exclusions. If the file already exists, add any missing patterns rather than replacing unrelated rules:
+### Save the project files
 
-```gitignore
-.godot/
-**/bin/
-**/obj/
-.idea/
-```
+1. In each Blender file, save generated images and use **File → External Data → Make All Paths Relative**. Check for missing files before committing.
+2. Keep `.blend`, `.png`, `.glb`, `project.godot`, `.tscn`, `.cs`, C# project/solution files, and relevant `.uid` files. Commit any separately saved Godot resources too.
+3. The repository's `.gitignore` excludes Godot caches, C# build output, IDE settings, and Blender backup versions. Check the staged file list so generated data does not enter your submission.
 
-2. You may exclude Blender backup versions by placing `*.blend1` and `*.blend2` in **`Name-Lastname-blender/.gitignore`**. Keep the actual `.blend` files, images, and GLBs.
-3. Keep Godot's `project.godot`, `.tscn` scenes, `.cs` scripts, C# project/solution, and relevant `.uid` files in Git. The `.godot/` import/build cache is regenerated locally.
-4. In a terminal at the **student repository root**, check that you are on the branch assigned in class. Stage only your own folders. Replace `Name-Lastname` in the command with your actual folder prefix:
+### Optional: commit, push, and open a pull request
+
+Use the fork and **workshop-submission** branch created during setup. Run the following at the **repository root**, replacing `firstname-lastname` with your folder name:
 
 ```bash
 git status
 git branch --show-current
-git add -- Name-Lastname-blender Name-Lastname-godot
+git add -- Students-works/firstname-lastname
 git diff --cached --stat
 git commit -m "Add my Blender models and Godot orbit workshop"
-git pull --rebase
-git push
+git push -u origin workshop-submission
 ```
 
-> [!IMPORTANT]
-> Push to the **student repository**, using the branch announced in class. Check the staged file list before committing; it should contain your work and dependencies, not other students' changes or generated caches.
+Check that `origin` points to your fork and that the staged files are all under your own folder. Then, on GitHub:
 
-The pull step brings in commits that others may have pushed. If it reports a conflict, resolve it with the instructor before continuing; do not force-push over other students' work.
+1. Open your fork and select **workshop-submission**.
+2. Choose **Contribute → Open pull request** or **Compare & pull request**.
+3. Set the base repository to **unibas-space/VisA-3D-public** and the base branch to **main**. The head repository is your fork and the compare branch is **workshop-submission**.
+4. Include your name or chosen nickname and a short description. Review **Files changed**, then create the pull request.
+5. If the teaching team requests corrections, commit and push them to the same branch. The pull request updates automatically.
+
+> [!WARNING]
+> Your fork, submission, and commit history are publicly visible. Submit only material you intend to publish. Follow the [repository submission rules](../README.md#submission-rules-voluntary).
 
 ### Final checkpoint
 
-- [ ] `planet.blend`, editable `rocket.blend`, and `showcase.blend` are saved.
-- [ ] The final rendered image and both textured GLBs are present.
+- [ ] `blender/planet.blend`, editable `blender/rocket.blend`, and `blender/showcase.blend` are saved inside my student folder.
+- [ ] The final render, baked image, and both textured GLBs are present.
 - [ ] Main opens with a camera, light, sky, planet, rocket, and readable status label.
 - [ ] Placement, launch, gravity, pause, thrust, collision, and reset work.
-- [ ] You can explain the difference between orientation, velocity, and acceleration.
-- [ ] Your named folders are committed and pushed to the student repository.
+- [ ] I can explain the difference between orientation, velocity, and acceleration.
+- [ ] If I chose to submit, I pushed my branch to my fork and opened a pull request.
 
 ---
 
 ## Assets and material recipes
 
-The teaching materials supply the images below. You copy the entire `assets/` folder into your named Blender folder during setup; the sky and exported models are copied into Godot in A7.
+The workshop directory supplies the following assets. You copy the entire `assets/` folder into your named Blender folder during setup; the sky and exported models are copied into Godot in A7.
 
 | File in `assets/` | Use |
 | --- | --- |
-| `textures/rocket-pencil-atlas.png` | Six colored pencil regions for the rocket's Base Color; sRGB |
-| `sky/space-panorama.png` | A 2:1 illustrated background for Blender and Godot; sRGB, LDR |
+| [textures/rocket-pencil-atlas.png](assets/textures/rocket-pencil-atlas.png) | Six colored pencil regions for the rocket's Base Color; sRGB |
+| [sky/space-panorama.png](assets/sky/space-panorama.png) | A 2:1 illustrated background for Blender and Godot; sRGB, LDR |
 | `material-presets.json` | The four procedural planet palettes used in A2 |
 | `textures/planet-basecolor.png` | Your own baked output from A6; created during the workshop |
 
-![Supplied rocket pencil texture atlas](assets/textures/rocket-pencil-atlas.png)
-
-*Use UV placement to choose a patch. There are no prescribed color assignments or exact UV-center coordinates.*
-
-![Supplied star background panorama](assets/sky/space-panorama.png)
-
-*The supplied panorama is a background rather than an HDR lighting source. Use the scene lights for the models.*
-
 ### Optional material helper
 
-The manual node exercise is the main route. If you need the prepared graph, save the planet in **`Name-Lastname-blender/planet.blend`**, select its mesh, and open **`tools/create_planet_material.py`** from the teaching materials in Blender's Text Editor. Set `PALETTE` to `Ocean`, `Rust`, `Ice`, or `Candy` and run it.
+The manual node exercise is the main route. If you need the prepared graph, save the planet in **`Students-works/firstname-lastname/blender/planet.blend`**, select its mesh, and open **`tools/create_planet_material.py`** from the teaching materials in Blender's Text Editor. Set `PALETTE` to `Ocean`, `Rust`, `Ice`, or `Candy` and run it.
 
 The helper reads **`assets/material-presets.json` beside the saved `.blend` file**, assigns a new material to the selected mesh, and leaves saving and baking to you. It does not create a planet mesh or run the bake automatically.
 
 ### Optional BlenderKit sky
 
-The supplied sky is sufficient. For another environment, search BlenderKit for **space HDRI** or **starry sky HDRI** and choose a free equirectangular environment. Download it before class and check its own reuse terms before committing a third-party file to the shared repository.
+The supplied sky is sufficient. For another environment, search BlenderKit for **space HDRI** or **starry sky HDRI** and choose a free equirectangular environment. Download it before class and check its own reuse terms before including a third-party file in your public submission.
 
 The supplied atlas and panorama were generated for this workshop. The included screenshots and reference illustrations are the material supplied for this revision; they are teaching images, not additional UV textures.
 

@@ -1,6 +1,6 @@
 """Optional Blender helper: assign the workshop material to the active planet mesh.
 
-Save the source file as Name-Lastname-blender/planet.blend, open this script in Blender's
+Save the source file as Students-works/firstname-lastname/blender/planet.blend, open this script in Blender's
 Text Editor, select the planet, and Run Script. This does not save the blend.
 """
 
@@ -20,7 +20,7 @@ def linear_rgba(hex_color):
 
 
 if not bpy.data.filepath:
-    raise RuntimeError("Save the file as Name-Lastname-blender/planet.blend before running this helper.")
+    raise RuntimeError("Save the file as Students-works/firstname-lastname/blender/planet.blend before running this helper.")
 
 obj = bpy.context.active_object
 if obj is None or obj.type != "MESH":

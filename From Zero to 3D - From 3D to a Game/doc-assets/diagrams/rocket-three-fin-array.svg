@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="380" viewBox="0 0 820 380" role="img" aria-labelledby="title desc">
+<title id="title">Three-fin array around the rocket center</title><desc id="desc">Top view. An original fin and two copies at 120 and 240 degrees surround the body. Fin origin and Empty are at the center; the Array has count three and only Object Offset enabled.</desc>
+<rect width="820" height="380" rx="14" fill="#FAF7EF"/>
+<g font-family="Arial, sans-serif" fill="#203746"><text x="28" y="35" font-size="20" font-weight="bold">THREE FINS · TOP VIEW ALONG Z</text>
+<g transform="translate(236 199)" stroke="#31495C" stroke-width="2"><circle r="108" fill="none" stroke-dasharray="5 5" stroke="#B1BDC3"/><g fill="#E77464"><rect x="36" y="-12" width="80" height="24" rx="3"/><rect x="36" y="-12" width="80" height="24" rx="3" transform="rotate(-120)"/><rect x="36" y="-12" width="80" height="24" rx="3" transform="rotate(-240)"/></g><circle r="60" fill="#ECE2CC"/><path d="M-9 0 H9 M0 -9 V9"/><circle r="3" fill="#31495C"/></g>
+<g font-size="15"><text x="330" y="175">Fin · 0°</text><text x="83" y="328">Copy · 240°</text><text x="84" y="79">Copy · 120°</text></g>
+<path d="M248 211 L403 278" stroke="#637887" stroke-width="1.5"/>
+<g font-size="17"><text x="440" y="106" font-weight="bold">Array settings</text><text x="440" y="141">Count: 3</text><text x="440" y="174">Relative / Constant Offset: off</text><text x="440" y="207">Object Offset: FinRotation</text><text x="440" y="240">Empty rotation Z: 120°</text><text x="414" y="285" font-weight="bold">Shared origin at (0, 0, 0)</text><text x="414" y="313">Fin and Empty scale: (1, 1, 1)</text></g>
+<text x="28" y="359" font-size="14">Shape one fin, then repeat its geometry. Keep the Array unapplied in the editable source collection.</text>
+</g></svg>

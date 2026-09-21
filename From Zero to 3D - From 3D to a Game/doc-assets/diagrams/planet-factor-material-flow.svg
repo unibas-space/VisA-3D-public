@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="320" viewBox="0 0 1160 320" role="img" aria-labelledby="title desc">
+<title id="title">How the procedural planet material works</title><desc id="desc">Generated coordinates feed Noise Factor, which feeds a Color Ramp. The chosen color becomes the Principled BSDF base color on the sphere.</desc>
+<defs><linearGradient id="ramp"><stop offset="0" stop-color="#1F5E9C"/><stop offset="47%" stop-color="#1F5E9C"/><stop offset="53%" stop-color="#66B36D"/><stop offset="100%" stop-color="#66B36D"/></linearGradient><clipPath id="planet"><circle cx="998" cy="160" r="57"/></clipPath><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M1,1 L7,4 L1,7" fill="none" stroke="#31495C" stroke-width="1.5"/></marker></defs>
+<rect width="1160" height="320" rx="14" fill="#FAF7EF"/>
+<g font-family="Arial, sans-serif" fill="#203746">
+<text x="30" y="33" font-size="20" font-weight="bold">PLANET MATERIAL · SCHEMATIC</text>
+<g fill="none" stroke="#637887" stroke-width="1.5"><rect x="24" y="58" width="242" height="218" rx="12"/><rect x="306" y="58" width="242" height="218" rx="12"/><rect x="588" y="58" width="242" height="218" rx="12"/><rect x="870" y="58" width="266" height="218" rx="12"/></g>
+<g font-size="18" font-weight="bold"><text x="45" y="88">1 · Coordinates</text><text x="327" y="88">2 · Noise Factor</text><text x="609" y="88">3 · Color Ramp</text><text x="891" y="88">4 · Surface</text></g>
+<g stroke="#637887" fill="none" stroke-width="1.7"><circle cx="145" cy="158" r="52"/><ellipse cx="145" cy="158" rx="23" ry="52"/><ellipse cx="145" cy="158" rx="52" ry="18"/><path d="M145 106 V210 M93 158 H197"/></g>
+<g><rect x="361" y="113" width="132" height="88" rx="10" fill="#C7CDD0"/><path d="M367 152 Q379 121 403 137 T456 133 Q485 151 470 181 Q450 193 427 170 Q400 191 378 183 Z" fill="#7B8990"/><path d="M413 114 Q430 121 424 145 Q402 153 389 141 Q375 118 413 114" fill="#E4E7E7"/><text x="359" y="224" font-size="14">One value per position</text></g>
+<rect x="620" y="134" width="178" height="43" rx="5" fill="url(#ramp)"/><path d="M704 183 l-6 10 h12 Z M714 183 l-6 10 h12 Z" fill="#637887"/>
+<circle cx="998" cy="160" r="57" fill="#1F5E9C"/><g clip-path="url(#planet)" fill="#66B36D"><path d="M940 124 Q963 105 981 117 T1001 147 Q983 170 965 160 T940 179 Z"/><path d="M1010 151 Q1028 133 1055 151 L1055 200 Q1026 214 1011 193 Q996 175 1010 151"/></g><circle cx="998" cy="160" r="57" fill="none" stroke="#637887" stroke-width="1.5"/>
+<g font-size="14"><text x="45" y="247">Generated → Vector</text><text x="327" y="247">Factor → ramp input</text><text x="609" y="247">Color → Base Color</text><text x="891" y="247">BSDF → Material Output</text></g>
+<g stroke="#31495C" fill="none" stroke-width="2" marker-end="url(#arrow)"><path d="M274 165 H297"/><path d="M556 165 H579"/><path d="M838 165 H861"/></g>
+<text x="30" y="303" font-size="14">The sphere is geometry. This graph computes its surface color; baking later records that color in a UV image.</text>
+</g></svg>
