@@ -1253,11 +1253,3 @@ The helper reads **`assets/material-presets.json` beside the saved `.blend` file
 The supplied sky is sufficient. For another environment, search BlenderKit for **space HDRI** or **starry sky HDRI** and choose a free equirectangular environment. Download it before class and check its own reuse terms before including a third-party file in your public submission.
 
 The supplied atlas and panorama were generated for this workshop. The included screenshots and reference illustrations are the material supplied for this revision; they are teaching images, not additional UV textures.
-
----
-
-## Optional extension — VOXON
-
-If a prepared device integration is available, the instructor can show the planet, rocket, and trajectory on the VOXON display after the core workshop. The display view can omit the sky and keep the text interface on the host screen.
-
-A desktop Godot project does not automatically become a volumetric application: the actual device runtime and SDK rendering route must be integrated separately. This walkthrough covers the desktop experiment. Its motion is constrained to Y = 0; an inclined orbit would require a separate extension with a three-dimensional initial velocity and the plane constraint removed.
