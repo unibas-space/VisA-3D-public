@@ -1,6 +1,6 @@
 # VisA-3D-public
 
-This repository contains **From Zero to 3D — From 3D to a Game**, a practical workshop covering modelling in Blender, importing assets into Godot, and implementing a simple orbital simulation in C#.
+This repository contains **From Zero to 3D - From 3D to a Game**, a practical workshop covering modelling in Blender, importing assets into Godot, and implementing a simple orbital simulation in C#.
 
 Start with the [complete walkthrough](From%20Zero%20to%203D%20-%20From%203D%20to%20a%20Game/VisA-3D-Walkthrough.md). It includes the prerequisites, modelling steps, Godot setup, and simulation code. Continue with the optional [rocket-exhaust bonus](From%20Zero%20to%203D%20-%20From%203D%20to%20a%20Game/VisA-3D-Bonus-Rocket-Exhaust.md) after the core workshop.
 
