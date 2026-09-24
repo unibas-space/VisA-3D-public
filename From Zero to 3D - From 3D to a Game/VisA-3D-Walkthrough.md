@@ -36,7 +36,7 @@ This is the complete student walkthrough. Each figure accompanies the action or 
 
 | Tool | Workshop target | Check before class |
 | --- | --- | --- |
-| Blender | 5.2.x | Starts and can save a `.blend` file |
+| Blender | 5.2.x | - [ ] Starts and can save a `.blend` file |
 | Godot | 4.7 **.NET edition** | C# is available when attaching a script |
 | .NET SDK | 10, matching your CPU architecture | `dotnet --list-sdks` includes a 10.x SDK |
 | JetBrains Rider | A current version with Godot support | Opens the Godot C# project |
