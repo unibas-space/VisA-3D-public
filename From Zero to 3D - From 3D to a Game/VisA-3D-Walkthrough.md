@@ -1259,7 +1259,6 @@ The supplied atlas and panorama were generated for this workshop. The included s
 ---
 
 # Bonus — Rocket Exhaust
-# Bonus — Rocket Exhaust
 
 **Optional extension after Task 1.C · Approximately 15–20 minutes**
 
