@@ -68,13 +68,11 @@ cd VisA-3D-public
 git switch -c workshop-submission
 ```
 
-Run these commands in Git Bash on Windows or a terminal on macOS/Linux. Your fork is your writable copy of the same repository; you do not need a separate student repository or write access to the original.
-
 > [!NOTE]
-> Submission is voluntary. To work locally without a GitHub account, use **Code → Download ZIP** on the original repository and extract it into a writable folder. Use the same student-folder layout and skip the final push/pull-request steps.
+> Submission is voluntary, but fun.
 
 > [!WARNING]
-> A public fork and any submitted work are publicly visible. A nickname for your folder does not make your GitHub account or commit history anonymous.
+> A public fork and any submitted work are publicly visible. One can also use a nickname for your folder.
 
 Inside **Students-works/firstname-lastname/**, create **blender/** and **godot/**. Copy the entire **assets/** directory from **From Zero to 3D - From 3D to a Game/** into your **blender/** folder. Create **exports/** and **renders/** there as well.
 
