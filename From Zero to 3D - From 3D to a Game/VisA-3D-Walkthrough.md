@@ -4,13 +4,13 @@
 
 Create a planet and a rocket in Blender, render them together, and build an interactive orbit experiment in Godot. You will choose the rocket's starting position and velocity, observe its trajectory, and change it with thrust.
 
-| Time | Activity | Result |
-| --- | --- | --- |
-| 00–05 | Introduction and target demonstration | Understand the asset-to-game workflow |
-| 05–60 | Task 1.A — Blender | Models, materials, rendered image, and GLB exports |
-| 60–85 | Task 1.B — Godot | Game scene, lighting, sky, and collision shapes |
-| 85–115 | Task 1.C — Simulation | Launch, gravity, steering, thrust, and collision |
-| 115–120 | Save and discuss | Explain one observed trajectory |
+| Activity | Result |
+| --- | --- |
+|  Introduction and target demonstration | Understand the asset-to-game workflow |
+|  Task 1.A — Blender | Models, materials, rendered image, and GLB exports |
+|  Task 1.B — Godot | Game scene, lighting, sky, and collision shapes |
+|  Task 1.C — Simulation | Launch, gravity, steering, thrust, and collision |
+|  Save and discuss | Explain one observed trajectory |
 
 > [!NOTE]
 > Complete installation and project setup before class. The two-hour schedule assumes a guided walkthrough and copy-paste code. Detailed styling and the optional VOXON demonstration can continue afterwards.
