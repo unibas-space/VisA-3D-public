@@ -207,7 +207,7 @@ Create a sphere, then give it a procedural colour pattern. You can vary the pale
 5. Drag from each output socket to the corresponding input:
 
 
-![Schematic of the Factor-based procedural planet material](doc-assets/diagrams/planet-factor-material-flow.svg)
+![Recorded Noise Color-output variation](reference/planet-noise-color-output-variation.png)
 * Generated coordinates → Noise Factor → Color Ramp → Principled Base Color → Material Output.*
 
 | Output | Input | Meaning |
