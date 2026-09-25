@@ -383,7 +383,9 @@ Keep both representations in **the same `rocket.blend`**: `RocketSource` contain
 > [!IMPORTANT]
 > Convert and join **the duplicates**. Keep the original parts, the Array modifier, and FinRotation in RocketSource. When you change the source later, replace the old export snapshot by repeating these steps; it does not update automatically. Hide only after converting, while the Array's Empty is still available.
 
-**Checkpoint:** The file retains editable parts and one final mesh named Rocket. Only the final mesh will be exported.
+> [!CAUTION]
+> **Checkpoint:**
+> The file retains editable parts and one final mesh named Rocket. Only the final mesh will be exported.
 
 ### A5. Compose and render a third Blender scene
 
