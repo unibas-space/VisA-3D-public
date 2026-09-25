@@ -206,6 +206,10 @@ Create a sphere, then give it a procedural colour pattern. You can vary the pale
 4. With the pointer over the Shader Editor, press **Shift+A**, choose **Search**, and type **Texture Coordinate**. Click to place the node. Repeat for **Noise Texture** and **Color Ramp**. F3 also opens command search.
 5. Drag from each output socket to the corresponding input:
 
+
+![Schematic of the Factor-based procedural planet material](doc-assets/diagrams/planet-factor-material-flow.svg)
+* Generated coordinates → Noise Factor → Color Ramp → Principled Base Color → Material Output.*
+
 | Output | Input | Meaning |
 | --- | --- | --- |
 | Texture Coordinate: **Generated** | Noise Texture: **Vector** | Read a position within the object's bounds |
@@ -213,9 +217,8 @@ Create a sphere, then give it a procedural colour pattern. You can vary the pale
 | Color Ramp: **Color** | Principled BSDF: **Base Color** | Use that color on the surface |
 | Principled BSDF: **BSDF** | Material Output: **Surface** | Send the material to the renderer |
 
-![Schematic of the Factor-based procedural planet material](doc-assets/diagrams/planet-factor-material-flow.svg)
-
-*Wiring reference for this recipe: Generated coordinates → Noise Factor → Color Ramp → Principled Base Color → Material Output. This is a diagram, not a screenshot.*
+![Recorded Noise Color-output variation](reference/planet-noise-color-output-variation.png)
+*Wiring reference for this recipe.*
 
 6. Set Noise to **3D**, Scale **3.0**, Detail **2.0**, Roughness **0.6**, Distortion **0**. Keep the other defaults.
 7. In the Color Ramp, keep **Linear** interpolation. Select the left stop, set Position **0.47**, click its color field, and enter **`#1F5E9C`**. Select the right stop and set Position **0.53**, color **`#66B36D`**. If Blender expects eight hex digits, append `FF` for full opacity.
