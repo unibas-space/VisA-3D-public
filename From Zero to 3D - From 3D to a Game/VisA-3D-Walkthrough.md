@@ -216,7 +216,7 @@ Create a sphere, then give it a procedural colour pattern. You can vary the pale
 | Color Ramp: **Color** | Principled BSDF: **Base Color** | Use that color on the surface |
 | Principled BSDF: **BSDF** | Material Output: **Surface** | Send the material to the renderer |
 
-![Recorded Noise Color-output variation](reference/planet-noise-color-output-variation.png)
+![Recorded Noise Color-output variation](doc-assets/reference/planet-noise-color-output-variation.png)
 *Wiring reference for this recipe.*
 
 6. Set Noise to **3D**, Scale **3.0**, Detail **2.0**, Roughness **0.6**, Distortion **0**. Keep the other defaults.
