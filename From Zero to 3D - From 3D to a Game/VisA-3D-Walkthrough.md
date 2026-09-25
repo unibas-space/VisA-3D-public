@@ -188,7 +188,7 @@ Create a sphere, then give it a procedural colour pattern. You can vary the pale
 
 ![Blender UV sphere with dimensions four and unit scale](doc-assets/blender/planet-sphere-dimensions.png)
 
-*The Item panel shows dimensions of 4 on each axis and scale 1. Name your sphere Planet; the capture still uses Sphere.*
+*The Item panel shows dimensions of 4 on each axis and scale 1. Name your sphere Planet.*
 
 > [!NOTE]
 > Applying scale keeps the visible size but records it in the mesh, leaving object scale at one. Shade Smooth changes the interpolated surface shading; it does not add polygons. The UV Sphere also comes with a UV map for the later bake.
