@@ -247,13 +247,9 @@ Choose different ramp colors or Noise Scale. These four starting points use the 
 > [!TIP]
 > The reference illustration is inspiration, not a requirement to reproduce rings, craters, or detailed continents. Your two-color procedural planet is sufficient. Keep radius **2** and the origin at `(0, 0, 0)`.
 
-#### Recorded material variation (optional)
-
-The rehearsal used Noise Texture’s yellow Color output instead of its gray Factor output. The image below belongs to that variation; it illustrates the surface style, while the diagram above defines the main recipe.
-
 ![Blue and green procedural planet in Blender Material Preview](doc-assets/blender/planet-procedural-material-preview.png)
 
-*A completed blue-and-green material from the rehearsal. This capture uses the Color-output variation described in the image notes; your Factor-based recipe can produce a different patch pattern. See the [material-variation note](doc-assets/README.md#procedural-material-variation).*
+*A completed blue-and-green material.*
 
 **Checkpoint:** A colored planet is saved in `planet.blend`.
 
