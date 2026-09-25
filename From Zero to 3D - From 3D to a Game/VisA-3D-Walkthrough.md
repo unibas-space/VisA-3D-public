@@ -283,7 +283,7 @@ Use the illustration as a design direction. Our version uses a cylinder, cone, n
 
 ![Blender Apply menu with Scale highlighted](doc-assets/blender/apply-object-scale-menu.png)
 
-*Use Apply Scale in Object Mode before the bevel and array steps. This menu capture shows the command, not the resulting transforms.*
+*Use Apply Scale in Object Mode before the bevel and array steps. This menu capture shows the command.*
 
 > [!TIP]
 > **Precise placement:** use the numeric locations above first. For free modelling, the magnet in the viewport header enables snapping; its dropdown selects targets such as Vertex, Edge, or Face. With snapping off, hold **Ctrl while moving with G** to enable it temporarily. Object Mode snaps a reference point of the object, so use **Edit Mode vertex snapping** when you need a specific vertex to meet another vertex. Turn snapping off again for the numerical recipe.
