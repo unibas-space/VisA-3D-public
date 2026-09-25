@@ -251,7 +251,8 @@ Choose different ramp colors or Noise Scale. These four starting points use the 
 
 *A completed blue-and-green material.*
 
-**Checkpoint:** A colored planet is saved in `planet.blend`.
+> [!CAUTION] **Checkpoint:**
+> A colored planet is saved in `planet.blend`.
 
 ### A3. Build the rocket in a separate file
 
