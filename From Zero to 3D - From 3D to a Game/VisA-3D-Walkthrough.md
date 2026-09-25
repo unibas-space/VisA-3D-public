@@ -206,8 +206,7 @@ Create a sphere, then give it a procedural colour pattern. You can vary the pale
 4. With the pointer over the Shader Editor, press **Shift+A**, choose **Search**, and type **Texture Coordinate**. Click to place the node. Repeat for **Noise Texture** and **Color Ramp**. F3 also opens command search.
 5. Drag from each output socket to the corresponding input:
 
-
-![Recorded Noise Color-output variation](reference/planet-noise-color-output-variation.png)
+![Schematic of the Factor-based procedural planet material](doc-assets/diagrams/planet-factor-material-flow.svg)
 * Generated coordinates → Noise Factor → Color Ramp → Principled Base Color → Material Output.*
 
 | Output | Input | Meaning |
