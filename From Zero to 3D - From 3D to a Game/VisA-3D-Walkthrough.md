@@ -1296,7 +1296,6 @@ Check that `origin` points to your fork and that the staged files are all under 
 2. Choose **Contribute → Open pull request** or **Compare & pull request**.
 3. Set the base repository to **unibas-space/VisA-3D-public** and the base branch to **main**. The head repository is your fork and the compare branch is **workshop-submission**.
 4. Include your name or chosen nickname and a short description. Review **Files changed**, then create the pull request.
-5. If the teaching team requests corrections, commit and push them to the same branch. The pull request updates automatically.
 
 > [!WARNING]
 > Your fork, submission, and commit history are publicly visible. Submit only material you intend to publish. Follow the [repository submission rules](../README.md#submission-rules-voluntary).
