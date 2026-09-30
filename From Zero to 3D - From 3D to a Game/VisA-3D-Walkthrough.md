@@ -153,20 +153,102 @@ The walkthrough uses English UI labels and default shortcuts. Blender shortcuts 
 
 Start with **File → New → General**.
 
-| Action | Command / shortcut |
+# Workshop Cheatsheet — Important Shortcuts
+
+The shortcuts below cover the commands used most often during the **From Zero to 3D — From 3D to a Game** workshop. Blender shortcuts normally apply to the editor currently under the mouse pointer.
+
+> **macOS note:** Blender allows `Cmd` instead of `Ctrl` for most default bindings, except where macOS conflicts with a shortcut. `Option` corresponds to `Alt`. Godot has dedicated macOS mappings for several editor actions, so its macOS column is not always the same as Windows/Linux.
+>
+> **Linux note:** The workshop shortcuts are normally identical to Windows. A desktop environment or window manager can occasionally intercept combinations involving `Alt`.
+
+## Blender
+
+| Action | Windows | macOS | Linux |
+| --- | --- | --- | --- |
+| Save | `Ctrl+S` | `Cmd+S` | `Ctrl+S` |
+| Select all | `A` | `A` | `A` |
+| Delete selected | `X` | `X` | `X` |
+| Add object / node | `Shift+A` | `Shift+A` | `Shift+A` |
+| Object Mode / Edit Mode | `Tab` | `Tab` | `Tab` |
+| Move | `G` | `G` | `G` |
+| Rotate | `R` | `R` | `R` |
+| Scale | `S` | `S` | `S` |
+| Constrain transform to axis | `X`, `Y`, or `Z` after `G`, `R`, or `S` | Same | Same |
+| Use local axis | press axis twice, e.g. `G`, `Z`, `Z` | Same | Same |
+| Confirm operation | `Enter` or left-click | `Return` or left-click | `Enter` or left-click |
+| Cancel operation | `Esc` or right-click | `Esc` or right-click | `Esc` or right-click |
+| Search command | `F3` | `F3` / `Fn+F3` | `F3` |
+| Apply transforms | `Ctrl+A` | `Cmd+A` | `Ctrl+A` |
+| Duplicate | `Shift+D` | `Shift+D` | `Shift+D` |
+| Open sidebar | `N` | `N` | `N` |
+| Frame selected | `Numpad .` | `Numpad .` | `Numpad .` |
+| Front view | `Numpad 1` | `Numpad 1` | `Numpad 1` |
+| Camera view | `Numpad 0` | `Numpad 0` | `Numpad 0` |
+| Align active camera to current view | `Ctrl+Alt+Numpad 0` | `Cmd+Option+Numpad 0` | `Ctrl+Alt+Numpad 0` |
+| Toggle X-Ray | `Alt+Z` | `Option+Z` | `Alt+Z` |
+| Box select | `B` | `B` | `B` |
+| Bevel selected edges | `Ctrl+B` | `Cmd+B` | `Ctrl+B` |
+| Snap / cursor menu | `Shift+S` | `Shift+S` | `Shift+S` |
+| Join selected objects | `Ctrl+J` | `Cmd+J` | `Ctrl+J` |
+| Parent selected object(s) | `Ctrl+P` | `Cmd+P` | `Ctrl+P` |
+| Smart UV Project menu | `U` in Edit Mode | `U` | `U` |
+| Insert keyframe | `I` | `I` | `I` |
+| Render image | `F12` | `F12` / `Fn+F12` | `F12` |
+| Orbit viewport | middle mouse drag | middle mouse drag | middle mouse drag |
+| Pan viewport | `Shift` + middle mouse drag | `Shift` + middle mouse drag | `Shift` + middle mouse drag |
+| Zoom viewport | mouse wheel | mouse wheel / trackpad gesture | mouse wheel |
+
+### Useful Blender sequences
+
+| Task | Shortcut sequence |
 | --- | --- |
-| Select / select all | Left-click / A |
-| Orbit / pan / zoom | Middle mouse / Shift + middle mouse / mouse wheel |
-| Move / rotate / scale | G / R / S |
-| Constrain a transform | X, Y, or Z after G, R, or S |
-| Confirm / cancel | Enter / Esc |
-| Toggle Object Mode / Edit Mode | Tab |
-| Add an object or a shader node | Shift+A in the relevant editor |
-| Search a command | F3, then type its name |
-| Apply object transforms | Ctrl+A in Object Mode, then choose the transform |
-| Duplicate selected objects | Shift+D |
-| Open the sidebar | N |
-| Frame the selected object | Numpad decimal, or View → Frame Selected |
+| Move along global Z | `G`, `Z` |
+| Move along local Z | `G`, `Z`, `Z` |
+| Scale uniformly to 20% | `S`, `0.2`, `Enter` |
+| Move by an exact X offset | `G`, `X`, *value*, `Enter` |
+| Apply object scale | `Ctrl/Cmd+A` → **Scale** |
+| Add a mesh | `Shift+A` → **Mesh** |
+| Add a shader node | `Shift+A` in the Shader Editor |
+| Open Adjust Last Operation | `F9` |
+
+## Godot
+
+| Action | Windows | macOS | Linux |
+| --- | --- | --- | --- |
+| Save current scene | `Ctrl+S` | `Cmd+S` | `Ctrl+S` |
+| Run project | `F5` | `Cmd+B` | `F5` |
+| Run current scene | `F6` | `Cmd+R` | `F6` |
+| Stop running project | `F8` | `Cmd+.` | `F8` |
+| Find in script | `Ctrl+F` | `Cmd+F` | `Ctrl+F` |
+| Find in files | `Ctrl+Shift+F` | `Cmd+Shift+F` | `Ctrl+Shift+F` |
+| Command palette | `Ctrl+Shift+P` | `Cmd+Shift+P` | `Ctrl+Shift+P` |
+| Quick Open | `Shift+Alt+O` | `Cmd+Ctrl+O` | `Shift+Alt+O` |
+| Quick Open Scene | `Ctrl+Shift+O` | `Cmd+Shift+O` | `Ctrl+Shift+O` |
+| Quick Open Script | `Ctrl+Alt+O` | `Option+Cmd+O` | `Ctrl+Alt+O` |
+
+> The workshop uses Godot's **.NET edition**. After changing exported C# fields, build the project successfully before checking the Inspector again.
+
+## Orbit experiment controls
+
+These are **project input actions**, not editor shortcuts.
+
+| Action | Key |
+| --- | --- |
+| Move launch position left / right | `←` / `→` |
+| Move launch position forward / back | `↑` / `↓` |
+| Turn rocket left / right | `A` / `D` |
+| Decrease / increase initial speed | `Z` / `X` |
+| Launch | `Space` |
+| Apply thrust | `W` |
+| Pause / resume | `P` |
+| Reset experiment | `R` |
+
+## Minimal memory aid
+
+**Blender:** `G` move · `R` rotate · `S` scale · `Tab` edit · `Shift+A` add · `Ctrl/Cmd+S` save · `F3` search · `F12` render  
+**Godot:** `F5` / `Cmd+B` run project · `F6` / `Cmd+R` run scene · `F8` / `Cmd+.` stop  
+**Orbit:** arrows place · `A/D` turn · `Z/X` speed · `Space` launch · `W` thrust · `P` pause · `R` reset
+
 
 Object Mode changes complete objects. Edit Mode changes their vertices, edges, and faces. A **mesh** defines the shape; a **material** defines how its surface interacts with light; an image **texture** stores values such as color; **UV coordinates** tell the material where to read that image.
 
@@ -1214,7 +1296,6 @@ Check that `origin` points to your fork and that the staged files are all under 
 2. Choose **Contribute → Open pull request** or **Compare & pull request**.
 3. Set the base repository to **unibas-space/VisA-3D-public** and the base branch to **main**. The head repository is your fork and the compare branch is **workshop-submission**.
 4. Include your name or chosen nickname and a short description. Review **Files changed**, then create the pull request.
-5. If the teaching team requests corrections, commit and push them to the same branch. The pull request updates automatically.
 
 > [!WARNING]
 > Your fork, submission, and commit history are publicly visible. Submit only material you intend to publish. Follow the [repository submission rules](../README.md#submission-rules-voluntary).
